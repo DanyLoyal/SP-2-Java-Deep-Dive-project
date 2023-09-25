@@ -1,3 +1,9 @@
+package DBConfig;
+
+import Model.Industry;
+import Model.Stock;
+import Model.StockPrice;
+import Model.StockRisk;
 import jakarta.persistence.EntityManagerFactory;
 import lombok.NoArgsConstructor;
 import org.hibernate.SessionFactory;
@@ -55,7 +61,10 @@ public class HibernateConfig {
 
     private static void getAnnotationConfiguration(Configuration configuration) {
         // add annotated classes
-
+        configuration.addAnnotatedClass(Stock.class);
+        configuration.addAnnotatedClass(Industry.class);
+        configuration.addAnnotatedClass(StockPrice.class);
+        configuration.addAnnotatedClass(StockRisk.class);
     }
 
     public static EntityManagerFactory getEntityManagerFactoryConfig(String name) {

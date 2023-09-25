@@ -1,5 +1,8 @@
+import DBConfig.HibernateConfig;
+import jakarta.persistence.EntityManagerFactory;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db");
     }
 }

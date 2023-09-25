@@ -1,0 +1,29 @@
+@startuml
+
+Class Industry{
+Name
+}
+
+Class StockPrize{
+Price
+PriceChange
+PriceDate
+}
+
+Class Stock{
+Ticker
+Name
+}
+
+Class StockRisk{
+Rating
+Profile
+RiskeDate
+}
+
+
+Industry "1"<--> "*"Stock
+StockPrize "*"<--> "1" Stock
+Stock "1"<--> "*"StockRisk
+
+@enduml

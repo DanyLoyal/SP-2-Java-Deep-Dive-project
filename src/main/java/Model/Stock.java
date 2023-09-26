@@ -3,6 +3,7 @@ package Model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +12,13 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Table(name = "stock")
+@ToString
 public class Stock {
 
     @Id
     @Column(name = "id")
     private String id;
 
-    @Column(name = "ticker")
-    private String ticker;
 
     @Column(name = "name")
     private String name;
@@ -32,9 +32,7 @@ public class Stock {
     @ManyToOne
     private Industry industry;
 
-    public Stock (String id, String ticker, String name){
-        this.id = id;
-        this.ticker = ticker;
+    public Stock(String name) {
         this.name = name;
     }
 

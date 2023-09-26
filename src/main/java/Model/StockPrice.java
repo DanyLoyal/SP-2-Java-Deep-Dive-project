@@ -3,6 +3,7 @@ package Model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
@@ -32,5 +33,20 @@ public class StockPrice {
 
     public void setStock(Stock stock) {
         this.stock = stock;
+    }
+
+    public StockPrice(double price, String priceChange, LocalDate priceDate) {
+        this.price = price;
+        this.priceChange = priceChange;
+        this.priceDate = priceDate;
+    }
+
+    @Override
+    public String toString() {
+        return "StockPrice{" +
+                "price=" + price +
+                ", priceChange='" + priceChange + '\'' +
+                ", priceDate=" + priceDate +
+                '}';
     }
 }

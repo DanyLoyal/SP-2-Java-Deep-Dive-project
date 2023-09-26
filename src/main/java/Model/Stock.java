@@ -35,7 +35,7 @@ public class Stock {
     @ManyToOne
     private Industry industry;
 
-    public Stock(String name) {
+    public Stock (String name){
         this.name = name;
     }
 
@@ -57,6 +57,12 @@ public class Stock {
         if(i != null) {
             this.industry = i;
             i.addStock(this);
+        }
+    }
+
+    public void setId(String id){
+        if(id != null){
+            this.id = id;
         }
     }
 }

@@ -29,4 +29,8 @@ public class StockPrice {
 
     @ManyToOne
     private Stock stock;
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
+    }
 }

@@ -1,6 +1,7 @@
 package Model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -18,7 +19,7 @@ public class StockRisk {
     private int id;
 
     @Column(name = "rating")
-    private int rating;
+    private double rating;
 
     @Column(name = "profile")
     private String profile;
@@ -29,6 +30,12 @@ public class StockRisk {
 
     @ManyToOne
     private Stock stock;
+
+    public StockRisk(double rating, String profile, LocalDate date){
+        this.rating = rating;
+        this.profile = profile;
+        this.riskDate = date;
+    }
 
     public void setStock(Stock stock) {
         this.stock = stock;

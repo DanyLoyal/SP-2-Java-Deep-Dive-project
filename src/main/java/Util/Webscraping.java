@@ -4,15 +4,24 @@ import Model.Stock;
 import Model.StockPrice;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.*;
 
 public class Webscraping {
+
+    private static Webscraping webscraping_instance = null;
+
+    private Webscraping() {
+    }
+
+    public static Webscraping getInstance() {
+        if (webscraping_instance == null)
+            webscraping_instance = new Webscraping();
+        return webscraping_instance;
+    }
 
     public static void main(String[] args) {
         Webscraping webscraping = new Webscraping();

@@ -24,4 +24,7 @@ public class Industry {
     @OneToMany(mappedBy = "industry")
     private Set<Stock> stocks = new HashSet<>();
 
+    public void addStock(Stock stock) {
+        stocks.add(stock);
+    }
 }

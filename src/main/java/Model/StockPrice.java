@@ -30,9 +30,7 @@ public class StockPrice {
     @ManyToOne
     private Stock stock;
 
-    public StockPrice(double price, String priceChange, LocalDate priceDate) {
-        this.price = price;
-        this.priceChange = priceChange;
-        this.priceDate = priceDate;
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 }

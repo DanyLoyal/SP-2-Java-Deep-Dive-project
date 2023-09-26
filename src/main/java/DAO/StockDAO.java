@@ -3,6 +3,7 @@ package DAO;
 import DBConfig.HibernateConfig;
 import Model.Stock;
 import Model.StockRisk;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.time.LocalDate;
@@ -11,7 +12,17 @@ import java.util.List;
 
 public class StockDAO {
 
-    EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db");
+    private static EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db");
+    private static StockDAO instance;
+
+    //****** Create Singleton *****\\
+    public static StockDAO getInstance(EntityManagerFactory _emf) {
+        if (instance == null) {
+            emf = _emf;
+            instance = new StockDAO();
+        }
+        return instance;
+    }
 
     public Stock persistStockData(Stock s) {
         try (var em = emf.createEntityManager()) {
@@ -33,17 +44,18 @@ public class StockDAO {
         }
     }
 
-    public Stock updateStock(Stock s, StockDTO newS ){
-        try (var em = emf.createEntityManager()){
+    public Stock updateStock(Stock stock){
+        try(EntityManager em = emf.createEntityManager()){
             em.getTransaction().begin();
-            if(s != newS) {
-                s.addStockPrice(newS);
-            Stock updatedStock = em.merge(newS);
+            em.merge(stock);
             em.getTransaction().commit();
-            return updatedStock;
-            }
-        }return null;
+        }
+        return stock;
     }
+
+
+
+
 }
 
 

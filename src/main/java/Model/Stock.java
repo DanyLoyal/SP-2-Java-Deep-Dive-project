@@ -19,8 +19,6 @@ public class Stock {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "ticker")
-    private String ticker;
 
     @Column(name = "name")
     private String name;

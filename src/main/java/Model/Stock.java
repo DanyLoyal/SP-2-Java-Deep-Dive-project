@@ -23,7 +23,7 @@ public class Stock {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "stock")
+    @OneToMany(mappedBy = "stock", fetch = FetchType.EAGER)
     private List<StockPrice> stockPrices = new ArrayList<>();
 
     @OneToMany(mappedBy = "stock")

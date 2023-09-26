@@ -20,8 +20,6 @@ public class Webscraping {
         List<Stock> worstStocks = webscraping.findWorstStocks();
         System.out.println("best stocks: " + bestStocks);
         System.out.println("worst stocks: " + worstStocks);
-
-
     }
 
     //Method that returns a list of the 2 best performing stocks of the day
@@ -54,15 +52,12 @@ public class Webscraping {
             String PriceChange2 = stock2.select(".ecVIUb.Cell__StyledFlexbox-sc-icfddc-0.eDgWiq.Flexbox__StyledFlexbox-sc-1ob4g1e-0 > .fUxmLS.StyledTruncateTooltip-sc-4za66m-0.fSPWzG.TruncateWithTooltip__StyledDiv-sc-cceovq-0 > .ghiywe.Text__StyledTypography-sc-1thuey1-0.dIJvcf.Typography__StyledTypography-sc-10mju41-1.kFeDsT.Typography__Span-sc-10mju41-0 > .crKnUo.Development__StyledDevelopment-sc-hnn1ri-0").text();
             LocalDate pricedate = LocalDate.now();
 
-            System.out.println("price1 = " + price1);
-            System.out.println("priceChange1 = " + priceChange1);
-
-            new StockPrice(price1, priceChange1, pricedate);
-            new StockPrice(price2, PriceChange2, pricedate);
-            stock1.ad
-
-            bestPerformers.add(new Stock(name1));
-            bestPerformers.add(new Stock(name2));
+            Stock bestStock1 = new Stock(name1);
+            Stock bestStock2 = new Stock(name2);
+            bestStock1.addStockPrice(new StockPrice(price1, priceChange1, pricedate));
+            bestStock2.addStockPrice(new StockPrice(price2, PriceChange2, pricedate));
+            bestPerformers.add(bestStock1);
+            bestPerformers.add(bestStock2);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -84,8 +79,28 @@ public class Webscraping {
             Elements stock2 = doc.select("div.dnLFDN.Rows__AlignedRow-sc-1udgki9-0.bhUzoF.Row__StyledRow-sc-1iamenj-0.fBJmAV.Flexbox__StyledFlexbox-sc-1ob4g1e-0:nth-of-type(3)");
             String name1 = stock1.select(".hZYbiE.NameCell__StyledLink-sc-qgec4s-0.foCaAq.Link__StyledLink-sc-apj04t-0").text();
             String name2 = stock2.select(".hZYbiE.NameCell__StyledLink-sc-qgec4s-0.foCaAq.Link__StyledLink-sc-apj04t-0").text();
-            worstPerformers.add(new Stock(name1));
-            worstPerformers.add(new Stock(name2));
+
+            //I use NumberFormat to convert the price from a string to a double with commas instead of dots
+            String priceString1 = stock1.select(".hlZdvv.NumberCell__StyledFlexTableCell-sc-icuiuz-0.ecVIUb.Cell__StyledFlexbox-sc-icfddc-0.dcnKuH.Flexbox__StyledFlexbox-sc-1ob4g1e-0 > .fUxmLS.StyledTruncateTooltip-sc-4za66m-0.fSPWzG.TruncateWithTooltip__StyledDiv-sc-cceovq-0 > .ghiywe.Text__StyledTypography-sc-1thuey1-0.dIJvcf.Typography__StyledTypography-sc-10mju41-1.kFeDsT.Typography__Span-sc-10mju41-0").text();
+            String priceString2 = stock2.select(".hlZdvv.NumberCell__StyledFlexTableCell-sc-icuiuz-0.ecVIUb.Cell__StyledFlexbox-sc-icfddc-0.dcnKuH.Flexbox__StyledFlexbox-sc-1ob4g1e-0 > .fUxmLS.StyledTruncateTooltip-sc-4za66m-0.fSPWzG.TruncateWithTooltip__StyledDiv-sc-cceovq-0 > .ghiywe.Text__StyledTypography-sc-1thuey1-0.dIJvcf.Typography__StyledTypography-sc-10mju41-1.kFeDsT.Typography__Span-sc-10mju41-0").text();
+            NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
+            Number number = format.parse(priceString1);
+            Number number2 = format.parse(priceString2);
+            double price1 = number.doubleValue();
+            double price2 = number2.doubleValue();
+
+            String priceChange1 = stock1.select(".ecVIUb.Cell__StyledFlexbox-sc-icfddc-0.eDgWiq.Flexbox__StyledFlexbox-sc-1ob4g1e-0 > .fUxmLS.StyledTruncateTooltip-sc-4za66m-0.fSPWzG.TruncateWithTooltip__StyledDiv-sc-cceovq-0 > .ghiywe.Text__StyledTypography-sc-1thuey1-0.dIJvcf.Typography__StyledTypography-sc-10mju41-1.kFeDsT.Typography__Span-sc-10mju41-0 > .kJLDzW.Development__StyledDevelopment-sc-hnn1ri-0").text();
+            String PriceChange2 = stock2.select(".ecVIUb.Cell__StyledFlexbox-sc-icfddc-0.eDgWiq.Flexbox__StyledFlexbox-sc-1ob4g1e-0 > .fUxmLS.StyledTruncateTooltip-sc-4za66m-0.fSPWzG.TruncateWithTooltip__StyledDiv-sc-cceovq-0 > .ghiywe.Text__StyledTypography-sc-1thuey1-0.dIJvcf.Typography__StyledTypography-sc-10mju41-1.kFeDsT.Typography__Span-sc-10mju41-0 > .kJLDzW.Development__StyledDevelopment-sc-hnn1ri-0").text();
+            LocalDate pricedate = LocalDate.now();
+
+            Stock worstStock1 = new Stock(name1);
+            Stock worstStock2 = new Stock(name2);
+            worstStock1.addStockPrice(new StockPrice(price1, priceChange1, pricedate));
+            worstStock2.addStockPrice(new StockPrice(price2, PriceChange2, pricedate));
+            worstPerformers.add(worstStock1);
+            worstPerformers.add(worstStock2);
+
+
         }
         catch (Exception e){
             e.printStackTrace();

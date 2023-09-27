@@ -27,18 +27,18 @@ public class Main {
             }
         }
 
-        for (Stock s : stocks) {
-            if (IndustryDAO.getInstance().doesIndustryExist(s.getIndustry())) {
-                if(StockDAO.getInstance().doesStockExist(s.getId())){
-                    StockPriceDAO.getInstance().persist(s.getStockPrices().get(0));
-                    StockRiskDAO.getInstance().persist(s.getStockRisks().get(0));
-                } else {
-                    StockDAO.getInstance().persist(s);
-                }
-            } else {
-                IndustryDAO.getInstance().persist(s.getIndustry());
-                StockDAO.getInstance().persist(s);
-            }
-        }
+//        for (Stock s : stocks) {
+//            if (IndustryDAO.getInstance().doesIndustryExist(s.getIndustry())) {
+//                if(StockDAO.getInstance().doesStockExist(s.getId())){
+//                    StockPriceDAO.getInstance().persist(s.getStockPrices().get(0));
+//                    StockRiskDAO.getInstance().persist(s.getStockRisks().get(0));
+//                } else {
+//                    StockDAO.getInstance().persist(s);
+//                }
+//            } else {
+//                IndustryDAO.getInstance().persist(s.getIndustry());
+//                StockDAO.getInstance().persist(s);
+//            }
+//        }
     }
 }

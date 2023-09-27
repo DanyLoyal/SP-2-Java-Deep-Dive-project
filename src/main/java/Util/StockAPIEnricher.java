@@ -38,7 +38,12 @@ public class StockAPIEnricher {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            stock.setId(gson.fromJson(response.body().string(), StockIdDTO.class).getResults().get(0).getPerformanceId());
+            StockIdDTO dto = gson.fromJson(response.body().string(), StockIdDTO.class);
+            if(dto.getResults().size() != 0) {
+                stock.setId(dto.getResults().get(0).getPerformanceId());
+            } else {
+                throw new ApiException("Stock with name: " + stock.getName() + " does not exist in Morning Star API.");
+            }
         } catch (IOException e){
             throw new ApiException("Something went wrong with the API request: " + e.getMessage());
         }
@@ -55,9 +60,13 @@ public class StockAPIEnricher {
         try{
             Response response = client.newCall(request).execute();
             StockRiskDTO dto = gson.fromJson(response.body().string(), StockRiskDTO.class);
-            StockRisk sr = new StockRisk(dto.getSusEsgRiskScore(), dto.getSusEsgRiskCategory(), LocalDate.of(Integer.parseInt(dto.getAsOfDate().substring(0, 4)), Integer.parseInt(dto.getAsOfDate().substring(5, 7)), Integer.parseInt(dto.getAsOfDate().substring(8, 10))));
-            stock.addStockRisk(sr);
-            stock.setIndustry(new Industry(dto.getSubIndustry()));
+            if(dto.getSusEsgRiskCategory() != null && dto.getSusEsgRiskScore() != 0 && dto.getAsOfDate() != null && dto.getSubIndustry() != null) {
+                StockRisk sr = new StockRisk(dto.getSusEsgRiskScore(), dto.getSusEsgRiskCategory(), LocalDate.of(Integer.parseInt(dto.getAsOfDate().substring(0, 4)), Integer.parseInt(dto.getAsOfDate().substring(5, 7)), Integer.parseInt(dto.getAsOfDate().substring(8, 10))));
+                stock.addStockRisk(sr);
+                stock.setIndustry(new Industry(dto.getSubIndustry()));
+            } else {
+                throw new ApiException("Data retrieved is null - stock id might be wrong");
+            }
         } catch (IOException e){
             throw new ApiException("Something went wrong with the API request: " + e.getMessage());
         }

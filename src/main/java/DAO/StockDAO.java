@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StockDAO {
+public class StockDAO extends DAO<Stock> {
 
     private static EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db");
     private static StockDAO instance;

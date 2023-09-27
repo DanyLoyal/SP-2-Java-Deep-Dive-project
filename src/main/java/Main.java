@@ -9,7 +9,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Stock> stocks = new ArrayList<>();
-
+/*
         stocks.addAll(Webscraping.getInstance().findBestStocks());
         stocks.addAll(Webscraping.getInstance().findWorstStocks());
 
@@ -40,5 +40,7 @@ public class Main {
 //                StockDAO.getInstance().persist(s);
 //            }
 //        }
+
+ */
     }
 }

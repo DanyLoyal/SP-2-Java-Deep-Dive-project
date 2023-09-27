@@ -8,7 +8,7 @@ import jakarta.persistence.EntityManagerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAO <T>implements GenericDAO <T>{
+public class DAO<T> implements GenericDAO<T> {
 
     private static EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db");
 
@@ -39,9 +39,9 @@ public class DAO <T>implements GenericDAO <T>{
     @Override
     public List<T> findAll(String table) {
 
-        try (var em = emf.createEntityManager()){
-            List<T> typeList = em.createNativeQuery("SELET * FROM "+table).getResultList();
-            if(typeList != null){
+        try (var em = emf.createEntityManager()) {
+            List<T> typeList = em.createNativeQuery("SELET * FROM " + table).getResultList();
+            if (typeList != null) {
                 return typeList;
             }
         }
@@ -52,7 +52,7 @@ public class DAO <T>implements GenericDAO <T>{
     public T persist(T t, String table) {
         try (var em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            List<T> typeList = em.createNativeQuery("SELET * FROM "+table).getResultList();
+            List<T> typeList = em.createNativeQuery("SELET * FROM " + table).getResultList();
             for (T name : typeList) {
                 if (name != typeList) {
                     em.persist(t);
@@ -66,21 +66,22 @@ public class DAO <T>implements GenericDAO <T>{
 
     @Override
     public T update(T t) {
-        try(var em = emf.createEntityManager()){
+        try (var em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.merge(t);
             em.getTransaction().commit();
-        }return t;
+        }
+        return t;
     }
 
     @Override
     public boolean delete(T t) {
-        try(var em = emf.createEntityManager()){
+        try (var em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.remove(t);
             em.getTransaction().commit();
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }

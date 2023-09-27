@@ -34,5 +34,5 @@ EER diagram:
 
 
 Links:
-Nasdaq - www.nasdaq.com/market-activity/stocks
+Nasdaq - www.nasdaq.com/market-activity/stocks.
 Morning-star - https://rapidapi.com/apidojo/api/morning-star

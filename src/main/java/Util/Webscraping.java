@@ -35,7 +35,9 @@ public class Webscraping {
     }
 
 
-    //Method that returns a list of the 2 best performing stocks of the day
+    //Method that returns a list of stocks from Nordnet.dk
+    //numberOfStocks is the number of stocks you want to get
+    //stockType is the type of stocks you want to get (best or worst)
     public List<Stock> findStocks(int numberOfStocks, StockType stockType){
         String url = "";
         if(stockType == StockType.BEST) {

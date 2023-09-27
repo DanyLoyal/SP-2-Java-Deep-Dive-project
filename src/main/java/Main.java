@@ -1,13 +1,18 @@
+import DBConfig.HibernateConfig;
 import Exceptions.ApiException;
 import Model.Stock;
 import Util.StockAPIEnricher;
 import Util.Webscraping;
+import jakarta.persistence.EntityManagerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+
+        EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db");
+
         List<Stock> stocks = new ArrayList<>();
 /*
         stocks.addAll(Webscraping.getInstance().findBestStocks());

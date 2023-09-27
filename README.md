@@ -46,6 +46,8 @@ Domain model:
 
 EER diagram:
 
+![EERSP2.png](Documentation%2FEERSP2.png)
+
 
 
 

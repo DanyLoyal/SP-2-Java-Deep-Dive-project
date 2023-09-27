@@ -24,6 +24,7 @@ Store data (name, analysis, price, price change, stock type)  in a database, for
 
 Diagrams:
 Domain model: 
+
 ![image](https://github.com/DanyLoyal/SP-2-Java-Deep-Dive-project/assets/113057317/2e129edf-796c-4876-b093-867cd40bfb38)
 
 EER diagram:

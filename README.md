@@ -19,7 +19,7 @@ Create a DB, with the biggest changes on the Stockexchange, including the market
 The collective data is for potential investments, to give the buyer/seller the best opportunities.
 
 Scrape Nasdaq, for the 4 shares with the biggest change (2 positive, and 2 negatives).
-Use a RestAPI to collect aditional information about the selected companies.
+Use Morning-star as a RestAPI to collect a stock analysis about the selected companies.
 Store data (name, analysis, price, price change, stock type)  in a database, for later use.
 
 Diagrams:

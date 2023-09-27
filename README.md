@@ -33,7 +33,7 @@ Stockmarket.
 Create a DB, with the biggest changes on the Stockexchange, including the market value at the given date. Then collect an analysis rapport from morning-star.
 The collective data is for potential investments, to give the buyer/seller the best opportunities.
 
-Scrape Nasdaq, for the 4 shares with the biggest change (2 positive, and 2 negatives).
+Scrape Nordnet, for the 4 shares with the biggest change (2 positive, and 2 negatives).
 Use Morning-star as a RestAPI to collect a stock analysis about the selected companies.
 Store data (name, analysis, price, price change, stock type)  in a database, for later use.
 
@@ -52,6 +52,6 @@ EER diagram:
 
 
 Links:
-Nasdaq - www.nasdaq.com/market-activity/stocks.
+Nordnet - https://www.nordnet.dk/dk
 
 Morning-star - https://rapidapi.com/apidojo/api/morning-star

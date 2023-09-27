@@ -16,12 +16,21 @@ Requirements:
 Idea: 
 Stockmarket.
 
-Scrape Nasdaq, ”www.nasdaq.com/market-activity/stocks” for the 4 shares with the biggest change (2 positive, and 2 negatives).
+Scrape Nasdaq, for the 4 shares with the biggest change (2 positive, and 2 negatives).
 Use a RestAPI to collect information about the selected companies.
 Store relevant data In a database, for later use.
 
 Description:
 
-Create a DB, with the biggest changes on the Stockexchange, including the market value at the given date. Then collect an analysis rapport from morning-star “https://rapidapi.com/apidojo/api/morning-star”.
+Create a DB, with the biggest changes on the Stockexchange, including the market value at the given date. Then collect an analysis rapport from morning-star.
 The collective data is for potential investments, to give the buyer/seller the best opportunities.
 
+Diagrams:
+Domain model ![image](https://github.com/DanyLoyal/SP-2-Java-Deep-Dive-project/assets/113057317/2e129edf-796c-4876-b093-867cd40bfb38)
+
+
+
+
+Links:
+Nasdaq - www.nasdaq.com/market-activity/stocks
+Morning-star - https://rapidapi.com/apidojo/api/morning-star

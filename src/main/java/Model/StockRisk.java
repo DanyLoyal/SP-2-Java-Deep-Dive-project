@@ -11,8 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @NamedQueries({
-@NamedQuery(name = "StockRisk.RetrieveAllRisks", query = "SELECT s FROM StockRisk s ")
-        @NamedQuery(name = "StockRisk.retrieveDate", query = "SELECT d FROM StockRisk d WHERE d.riskDate = ")
+@NamedQuery(name = "StockRisk.RetrieveAllRisks", query = "SELECT s FROM StockRisk s "),
 })
 @Table(name = "stock_risk")
 public class StockRisk {

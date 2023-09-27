@@ -23,39 +23,6 @@ public class StockDAO {
         }
         return instance;
     }
-
-    public Stock persistStockData(Stock s) {
-        try (var em = emf.createEntityManager()) {
-            em.getTransaction().begin();
-            em.persist(s);
-            em.getTransaction().commit();
-            return s;
-        }
-    }
-
-    public Stock findStockById(String id) {
-        try (var em = emf.createEntityManager()) {
-            Stock stock = em.find(Stock.class, id);
-            if (stock != null) {
-                return stock;
-            } else {
-                return null;
-            }
-        }
-    }
-
-    public Stock updateStock(Stock stock){
-        try(EntityManager em = emf.createEntityManager()){
-            em.getTransaction().begin();
-            em.merge(stock);
-            em.getTransaction().commit();
-        }
-        return stock;
-    }
-
-
-
-
 }
 
 

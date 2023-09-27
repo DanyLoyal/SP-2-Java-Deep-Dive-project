@@ -1,22 +1,19 @@
 package DAO;
 
 import DBConfig.HibernateConfig;
-import Model.StockRisk;
+import Model.StockPrice;
 import jakarta.persistence.EntityManagerFactory;
 
-import java.util.List;
-
-public class StockRiskDAO extends DAO<StockRisk>  {
+public class StockPriceDAO {
 
     private static EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db");
-    private static StockRiskDAO instance;
-
+    private static StockPriceDAO instance;
 
     //****** Create Singleton *****\\
-    public static StockRiskDAO getInstance(EntityManagerFactory _emf) {
-        if (instance == null) {
+    public static StockPriceDAO getInstance(EntityManagerFactory _emf){
+        if(instance == null){
             emf = _emf;
-            instance = new StockRiskDAO();
+            instance = new StockPriceDAO();
         }
         return instance;
     }

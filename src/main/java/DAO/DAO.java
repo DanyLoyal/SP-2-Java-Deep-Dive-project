@@ -11,16 +11,6 @@ import java.util.List;
 public class DAO <T>implements GenericDAO <T>{
 
     private static EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db");
-    private static StockDAO instance;
-
-    public static StockDAO getInstance(EntityManagerFactory _emf) {
-        if (instance == null) {
-            emf = _emf;
-            instance = new StockDAO();
-        }
-        return instance;
-    }
-
 
     @Override
     public T findByName(String name, Class<T> tClass) {

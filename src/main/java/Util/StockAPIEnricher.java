@@ -12,6 +12,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Random;
 
 public class StockAPIEnricher {
 
@@ -41,7 +42,8 @@ public class StockAPIEnricher {
             if(dto.getResults().size() != 0) {
                 stock.setId(dto.getResults().get(0).getPerformanceId());
             } else {
-                throw new ApiException("Stock with name: " + stock.getName() + " does not exist in Morning Star API.");
+                Random r = new Random();
+                stock.setId(stock.getName() + r.nextInt(101));
             }
         } catch (IOException e){
             throw new ApiException("Something went wrong with the API request: " + e.getMessage());
@@ -64,7 +66,13 @@ public class StockAPIEnricher {
                 stock.addStockRisk(sr);
                 stock.setIndustry(new Industry(dto.getSubIndustry()));
             } else {
-                throw new ApiException("Data retrieved is null - stock id might be wrong");
+                StockRisk sr = new StockRisk(0, "Doesn't exist", LocalDate.now());
+                stock.addStockRisk(sr);
+                if(dto.getSubIndustry() != null) {
+                    stock.setIndustry(new Industry(dto.getSubIndustry()));
+                } else {
+                    stock.setIndustry(new Industry("Unknown industry"));
+                }
             }
         } catch (IOException e){
             throw new ApiException("Something went wrong with the API request: " + e.getMessage());

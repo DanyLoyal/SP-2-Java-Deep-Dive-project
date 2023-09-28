@@ -52,7 +52,9 @@ public class Main {
             }
             try {
                 StockAPIEnricher.getInstance().getIdForStock(s);
-                StockAPIEnricher.getInstance().getRiskForStock(s);
+                if(!s.getId().contains(s.getName())) {
+                    StockAPIEnricher.getInstance().getRiskForStock(s);
+                }
             } catch (ApiException e) {
                 System.out.println(e.getMessage());
             }
@@ -60,7 +62,7 @@ public class Main {
 
         for (Stock s : stocks) {
             if (IndustryDAO.getInstance(emf).doesIndustryExist(s.getIndustry().getName())) {
-                if(StockDAO.getInstance(emf).doesStockExist(s.getId())){
+                if(StockDAO.getInstance(emf).doesStockExist(s.getName())){
                     StockPriceDAO.getInstance(emf).persist(s.getStockPrices().get(0));
                     StockRiskDAO.getInstance(emf).persist(s.getStockRisks().get(0));
                 } else {
@@ -68,7 +70,6 @@ public class Main {
                 }
             } else {
                 IndustryDAO.getInstance(emf).persist(s.getIndustry());
-                StockDAO.getInstance(emf).persist(s);
             }
         }
     }

@@ -1,7 +1,6 @@
 package Util;
 
 import Model.Stock;
-
 import java.util.List;
 
 @FunctionalInterface

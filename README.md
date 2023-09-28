@@ -1,7 +1,7 @@
 # SP-2-Java-Deep-Dive-project
-Dette er Gruppe 5 sp2 project 3sem
+Gruppe 5, hold B SP-2 project 3. semester
 
-Software:
+### Software:
 - IntelliJ v.2023.2
 - Maven project
 - Java jdk corretto - 19
@@ -15,7 +15,7 @@ Software:
 - hibernate v6.2.4
 
 
-Requirements:
+### Requirements:
 1.	Choose a website that provides some interesting data that you can scrape daily.
 2.	Scrape the data from the website and using JSoup.
 3.	Enrich the data by fetching additional information from a REST API.
@@ -26,9 +26,9 @@ Requirements:
 8.	Share the source code on GitHub.
 9.	Write documentation for the project and add to your repo.
 
-Description:
+### Description:
 
-Stockmarket.
+##### Stockmarket.
 
 Create a DB, with the biggest changes on the Stockexchange, including the market value at the given date. Then collect an analysis rapport from morning-star.
 The collective data is for potential investments, to give the buyer/seller the best opportunities.
@@ -37,7 +37,7 @@ Scrape Nordnet, for the 4 shares with the biggest change (2 positive, and 2 nega
 Use Morning-star as a RestAPI to collect a stock analysis about the selected companies.
 Store data (name, analysis, price, price change, stock type)  in a database, for later use.
 
-Diagrams:
+### Diagrams:
 
 Domain model: 
 
@@ -49,9 +49,22 @@ EER diagram:
 ![EERSP2.png](Documentation%2FEERSP2.png)
 
 
+### Error handling:
+
+Currently we are mainly using errorhandling in our API, if the data we recieve is null.
+We are using ENUMs to minimize the properbility of errors, when we scrape for stock data.
+
+### Potential improvements:
+
+Better error handling throughout the program.
+More custom excetptions (Better description of the recieved error)
+Better catching of errors in our DAO methods
 
 
-Links:
+
+
+### Links:
+
 Nordnet - https://www.nordnet.dk/dk
 
 Morning-star - https://rapidapi.com/apidojo/api/morning-star

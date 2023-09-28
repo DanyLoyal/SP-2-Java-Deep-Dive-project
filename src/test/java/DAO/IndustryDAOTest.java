@@ -16,7 +16,6 @@ class IndustryDAOTest {
 
     private EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db_test");
     @BeforeEach
-
     void setUp() {
 
 
@@ -131,11 +130,9 @@ class IndustryDAOTest {
             industry = em.find(Industry.class, 1);
 
         }
-        boolean delete = industryDAO.delete(industry);
-        boolean deleteCheck = industryDAO.delete(industry);
+        boolean delete = industryDAO.delete(industry, industry.getId());
+        boolean deleteCheck = industryDAO.delete(industry, industry.getId());
         assertTrue(delete);
         assertFalse(deleteCheck);
-
-
     }
 }

@@ -1,5 +1,6 @@
 package DAO;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 public interface GenericDAO <T>{
@@ -9,6 +10,6 @@ public interface GenericDAO <T>{
     List<T> findAll(String table, Class<T> tClass);
     T persist(T t);
     T update(T t);
-    boolean delete(T t);
+    boolean delete(T t, int id);
 
 }

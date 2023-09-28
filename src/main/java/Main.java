@@ -1,6 +1,4 @@
-import Exceptions.ApiException;
 import Model.Stock;
-import Util.StockAPIEnricher;
 import Util.Webscraping;
 
 import java.util.ArrayList;

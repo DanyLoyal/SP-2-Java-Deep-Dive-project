@@ -1,15 +1,8 @@
 package DAO;
 
 import DBConfig.HibernateConfig;
-import Model.Industry;
-import Model.Stock;
-import Model.StockRisk;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
-import org.postgresql.core.NativeQuery;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class DAO<T> implements GenericDAO<T> {

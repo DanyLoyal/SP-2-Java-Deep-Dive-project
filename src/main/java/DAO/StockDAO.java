@@ -1,15 +1,8 @@
 package DAO;
 
 import DBConfig.HibernateConfig;
-import Model.Industry;
 import Model.Stock;
-import Model.StockRisk;
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class StockDAO extends DAO<Stock> {
 

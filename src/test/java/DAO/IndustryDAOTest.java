@@ -135,7 +135,5 @@ class IndustryDAOTest {
         boolean deleteCheck = industryDAO.delete(industry);
         assertTrue(delete);
         assertFalse(deleteCheck);
-
-
     }
 }

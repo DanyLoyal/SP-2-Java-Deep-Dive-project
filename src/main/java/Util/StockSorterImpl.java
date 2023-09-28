@@ -11,15 +11,6 @@ import java.util.stream.Collectors;
 
 public class StockSorterImpl {
 
-//    StockSorter sortByYear = stock -> {
-//        LocalDate lastUpdate = null;
-//        for(StockPrice sp: stock.getStockPrices()){
-//            if(lastUpdate == null || sp.getPriceDate().isAfter(lastUpdate)){
-//                lastUpdate = sp.getPriceDate();
-//            }
-//        }
-//
-//    };
 
     static StockSorter sortByPrice = stocks -> {
          return stocks

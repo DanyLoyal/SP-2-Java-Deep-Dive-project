@@ -1,8 +1,15 @@
 package DAO;
 
 import DBConfig.HibernateConfig;
+import Model.Industry;
+import Model.Stock;
+import Model.StockRisk;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
+import org.postgresql.core.NativeQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DAO<T> implements GenericDAO<T> {
@@ -10,10 +17,12 @@ public class DAO<T> implements GenericDAO<T> {
     private static EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db");
 
     @Override
-    public T findByName(String name, Class<T> tClass) {
+    public T findByName(String name, Class<T> tClass, String table) {
         try (var em = emf.createEntityManager()) {
-            T t = em.find(tClass, name);
-
+            TypedQuery< T > query = em.createQuery(
+                    "SELECT i FROM " + table + " i WHERE i.name = :name", tClass);
+            query.setParameter("name", name);
+            T t = query.getSingleResult();
             if (t != null) {
                 return t;
             }
@@ -25,7 +34,6 @@ public class DAO<T> implements GenericDAO<T> {
     public T findById(int id, Class<T> tClass) {
         try (var em = emf.createEntityManager()) {
             T t = em.find(tClass, id);
-
             if (t != null) {
                 return t;
             }
@@ -34,10 +42,11 @@ public class DAO<T> implements GenericDAO<T> {
     }
 
     @Override
-    public List<T> findAll(String table) {
+    public List<T> findAll(String table, Class<T> tClass) {
 
         try (var em = emf.createEntityManager()) {
-            List<T> typeList = em.createNativeQuery("SELET * FROM " + table).getResultList();
+            TypedQuery<T> query =  em.createQuery("SELECT i FROM " + table + " i", tClass);
+            List<T> typeList = query.getResultList();
             if (typeList != null) {
                 return typeList;
             }
@@ -46,20 +55,16 @@ public class DAO<T> implements GenericDAO<T> {
     }
 
     @Override
-    public T persist(T t, String table) {
+    public T persist(T t) {
         try (var em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            List<T> typeList = em.createNativeQuery("SELET * FROM " + table).getResultList();
-            for (T name : typeList) {
-                if (name != typeList) {
-                    em.persist(t);
-                    em.getTransaction().commit();
-                    return t;
+            em.persist(t);
+            em.getTransaction().commit();
                 }
+        return t;
             }
-        }
-        return null;
-    }
+
+
 
     @Override
     public T update(T t) {

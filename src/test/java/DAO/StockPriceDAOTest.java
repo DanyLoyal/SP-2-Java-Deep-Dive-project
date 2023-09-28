@@ -114,7 +114,7 @@ class StockPriceDAOTest {
         try(EntityManager em = emf.createEntityManager()){
             spDelete = em.find(StockPrice.class, 2);
         }
-        assertTrue(StockPriceDAO.getInstance(emf).delete(spDelete));
+        assertTrue(StockPriceDAO.getInstance(emf).delete(spDelete, spDelete.getId()));
         try(EntityManager em = emf.createEntityManager()){
             assertNull(em.find(StockPrice.class, 2));
         }

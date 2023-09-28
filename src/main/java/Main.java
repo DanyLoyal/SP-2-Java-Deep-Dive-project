@@ -1,11 +1,20 @@
+import DAO.IndustryDAO;
+import DAO.StockDAO;
+import DAO.StockPriceDAO;
+import DAO.StockRiskDAO;
+import DBConfig.HibernateConfig;
+import Exceptions.ApiException;
 import Model.Stock;
+import Util.StockAPIEnricher;
 import Util.Webscraping;
-
+import jakarta.persistence.EntityManagerFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
 public class Main {
+
+    static EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db");
     public static void main(String[] args) {
         List<Stock> stocks = new ArrayList<>();
 
@@ -35,32 +44,32 @@ public class Main {
     } catch (Exception e) {
     }
 
-//       for (Stock s : stocks) {
-//            try {
-//                Thread.sleep(5500);
-//            } catch (InterruptedException e) {
-//                System.out.println(e.getMessage());
-//            }
-//            try {
-//                StockAPIEnricher.getInstance().getIdForStock(s);
-//                StockAPIEnricher.getInstance().getRiskForStock(s);
-//            } catch (ApiException e) {
-//                System.out.println(e.getMessage());
-//            }
-//        }
+       for (Stock s : stocks) {
+            try {
+                Thread.sleep(5500);
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
+            try {
+                StockAPIEnricher.getInstance().getIdForStock(s);
+                StockAPIEnricher.getInstance().getRiskForStock(s);
+            } catch (ApiException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
-//        for (Stock s : stocks) {
-//            if (IndustryDAO.getInstance().doesIndustryExist(s.getIndustry())) {
-//                if(StockDAO.getInstance().doesStockExist(s.getId())){
-//                    StockPriceDAO.getInstance().persist(s.getStockPrices().get(0));
-//                    StockRiskDAO.getInstance().persist(s.getStockRisks().get(0));
-//                } else {
-//                    StockDAO.getInstance().persist(s);
-//                }
-//            } else {
-//                IndustryDAO.getInstance().persist(s.getIndustry());
-//                StockDAO.getInstance().persist(s);
-//            }
-//        }
+        for (Stock s : stocks) {
+            if (IndustryDAO.getInstance(emf).doesIndustryExist(s.getIndustry().getName())) {
+                if(StockDAO.getInstance(emf).doesStockExist(s.getId())){
+                    StockPriceDAO.getInstance(emf).persist(s.getStockPrices().get(0));
+                    StockRiskDAO.getInstance(emf).persist(s.getStockRisks().get(0));
+                } else {
+                    StockDAO.getInstance(emf).persist(s);
+                }
+            } else {
+                IndustryDAO.getInstance(emf).persist(s.getIndustry());
+                StockDAO.getInstance(emf).persist(s);
+            }
+        }
     }
 }

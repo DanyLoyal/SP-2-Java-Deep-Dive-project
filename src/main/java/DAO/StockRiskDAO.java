@@ -6,7 +6,7 @@ import jakarta.persistence.EntityManagerFactory;
 
 public class StockRiskDAO extends DAO<StockRisk> {
 
-    private static EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db");
+    private static EntityManagerFactory emf;
     private static StockRiskDAO instance;
 
 

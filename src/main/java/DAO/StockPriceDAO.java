@@ -6,7 +6,7 @@ import jakarta.persistence.EntityManagerFactory;
 
 public class StockPriceDAO extends DAO<StockPrice> {
 
-    private static EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db");
+    private static EntityManagerFactory emf;
     private static StockPriceDAO instance;
 
     //****** Create Singleton *****\\

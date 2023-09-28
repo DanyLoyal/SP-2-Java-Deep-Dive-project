@@ -8,7 +8,7 @@ import jakarta.persistence.TypedQuery;
 
 public class IndustryDAO extends DAO<Industry> {
 
-    static EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db");
+    static EntityManagerFactory emf;
     private static IndustryDAO instance;
 
     //****** Create Singleton *****\\

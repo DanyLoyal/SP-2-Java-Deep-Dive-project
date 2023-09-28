@@ -12,6 +12,9 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Table(name = "stock")
+@NamedQueries({
+        @NamedQuery(name = "Stock.FindAllStocks", query = "SELECT stock from Stock stock")
+})
 @ToString
 public class Stock {
 
@@ -23,10 +26,10 @@ public class Stock {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "stock")
+    @OneToMany(mappedBy = "stock", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<StockPrice> stockPrices = new ArrayList<>();
 
-    @OneToMany(mappedBy = "stock")
+    @OneToMany(mappedBy = "stock", cascade = CascadeType.PERSIST)
     private List<StockRisk> stockRisks = new ArrayList<>();
 
     @ManyToOne

@@ -21,7 +21,7 @@ public class Industry {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "industry")
+    @OneToMany(mappedBy = "industry", cascade = CascadeType.PERSIST)
     private Set<Stock> stocks = new HashSet<>();
 
     public Industry(String name){

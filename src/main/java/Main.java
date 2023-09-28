@@ -1,7 +1,9 @@
+import DBConfig.HibernateConfig;
 import Exceptions.ApiException;
 import Model.Stock;
 import Util.StockAPIEnricher;
 import Util.Webscraping;
+import jakarta.persistence.EntityManagerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,4 +67,6 @@ public class Main {
 //            }
 //        }
     }
+
+
 }

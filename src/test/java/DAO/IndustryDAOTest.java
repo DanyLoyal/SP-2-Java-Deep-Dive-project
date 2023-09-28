@@ -16,7 +16,6 @@ class IndustryDAOTest {
 
     private EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db_test");
     @BeforeEach
-
     void setUp() {
 
 

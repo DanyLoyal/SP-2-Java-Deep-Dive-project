@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
 @Getter
+@Setter
 @NamedQueries({
 @NamedQuery(name = "StockRisk.RetrieveAllRisks", query = "SELECT s FROM StockRisk s "),
 })
@@ -39,6 +41,7 @@ public class StockRisk {
         this.profile = profile;
         this.riskDate = date;
     }
+
 
     public void setStock(Stock stock) {
         this.stock = stock;

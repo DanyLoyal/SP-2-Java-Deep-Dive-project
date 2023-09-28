@@ -11,14 +11,13 @@ PriceDate
 }
 
 Class Stock{
-Ticker
 Name
 }
 
 Class StockRisk{
 Rating
 Profile
-RiskeDate
+RiskDate
 }
 
 

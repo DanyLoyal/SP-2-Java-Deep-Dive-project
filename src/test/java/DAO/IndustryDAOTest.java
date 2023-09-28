@@ -39,7 +39,7 @@ class IndustryDAOTest {
     void tearDown() {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-           // em.createNativeQuery("truncate TABLE  public.industry RESTART IDENTITY CASCADE").executeUpdate();
+            em.createNativeQuery("truncate TABLE  public.industry RESTART IDENTITY CASCADE").executeUpdate();
             em.getTransaction().commit();
         }
     }

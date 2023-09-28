@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class IndustryDAOTest {
 
-    private EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("daotest");
+    private EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("stock_db_test");
     @BeforeEach
 
     void setUp() {
@@ -37,7 +37,7 @@ class IndustryDAOTest {
     void tearDown() {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            em.createNativeQuery("truncate TABLE  public.industry RESTART IDENTITY CASCADE").executeUpdate();
+            //em.createNativeQuery("truncate TABLE  public.industry RESTART IDENTITY CASCADE").executeUpdate();
             em.getTransaction().commit();
         }
     }
@@ -56,5 +56,28 @@ class IndustryDAOTest {
             boolean notExists = industryDAO.doesIndustryExist("NonExistent");
             assertFalse(notExists, "Expected industry 'NonExistent' to not exist");
         }
+    }
+    @Test
+    void findByName() {
+    }
+
+    @Test
+    void findById() {
+    }
+
+    @Test
+    void findAll() {
+    }
+
+    @Test
+    void persist() {
+    }
+
+    @Test
+    void update() {
+    }
+
+    @Test
+    void delete() {
     }
 }

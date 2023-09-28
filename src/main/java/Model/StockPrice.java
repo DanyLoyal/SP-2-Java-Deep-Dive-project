@@ -28,11 +28,15 @@ public class StockPrice {
     @Temporal(TemporalType.DATE)
     private LocalDate priceDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Stock stock;
 
     public void setStock(Stock stock) {
         this.stock = stock;
+    }
+
+    public void setDate(LocalDate date){
+        this.priceDate = date;
     }
 
     public StockPrice(double price, String priceChange, LocalDate priceDate) {

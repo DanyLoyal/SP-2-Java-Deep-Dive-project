@@ -1,6 +1,7 @@
 package DAO;
 
 import DBConfig.HibernateConfig;
+import Model.Industry;
 import Model.Stock;
 import Model.StockRisk;
 import jakarta.persistence.EntityManager;
@@ -22,6 +23,15 @@ public class StockDAO extends DAO<Stock> {
             instance = new StockDAO();
         }
         return instance;
+    }
+    public boolean doesStockExist(String name) {
+        try (var em = emf.createEntityManager()) {
+            Stock stock = em.find(Stock.class, name);
+            if (stock != null) {
+                return true;
+            }
+            return false;
+        }
     }
 }
 

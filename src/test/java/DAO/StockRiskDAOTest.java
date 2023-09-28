@@ -110,14 +110,9 @@ class StockRiskDAOTest {
             stockRisk = em.find(StockRisk.class, 2);
 
         }
-        boolean delete = stockRiskDAO.delete(stockRisk);
-        boolean deleteCheck = stockRiskDAO.delete(stockRisk);
+        boolean delete = stockRiskDAO.delete(stockRisk,2);
+        boolean deleteCheck = stockRiskDAO.delete(stockRisk,2);
         assertTrue(delete);
         assertFalse(deleteCheck);
     }
-
-    @Test
-    void testFindByName() {
-    }
-
 }

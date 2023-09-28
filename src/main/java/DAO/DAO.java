@@ -4,6 +4,7 @@ import DBConfig.HibernateConfig;
 import Model.Industry;
 import Model.Stock;
 import Model.StockRisk;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -77,14 +78,22 @@ public class DAO<T> implements GenericDAO<T> {
     }
 
     @Override
-    public boolean delete(T t) {
+    public boolean delete(T t, int id) {
         try (var em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.remove(t);
             em.getTransaction().commit();
-            return true;
+
         } catch (Exception e) {
             return false;
+        }
+        try (var em = emf.createEntityManager()){
+            if(em.find(t.getClass(), id) != null){
+                return false;
+            }
+            else {
+                return true;
+            }
         }
     }
 }

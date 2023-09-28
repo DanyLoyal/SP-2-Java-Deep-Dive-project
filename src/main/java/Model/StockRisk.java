@@ -42,7 +42,6 @@ public class StockRisk {
         this.riskDate = date;
     }
 
-
     public void setStock(Stock stock) {
         this.stock = stock;
     }

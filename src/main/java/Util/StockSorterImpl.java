@@ -1,10 +1,6 @@
 package Util;
 
 import Model.Stock;
-import Model.StockPrice;
-
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;

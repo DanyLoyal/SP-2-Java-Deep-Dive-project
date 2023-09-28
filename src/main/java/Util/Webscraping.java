@@ -55,7 +55,7 @@ public class Webscraping {
                     .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 " +
                             "(KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36")
                     .get();
-            Thread.sleep(1000); // 1 second
+//            Thread.sleep(1000); // 1 second
 
             Elements rows = doc.select("div.FlexTable__StyledDiv-sc-v6wpic-0.JIqfK div");
             for(Element e : rows){

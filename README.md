@@ -41,7 +41,7 @@ Diagrams:
 
 Domain model: 
 
-![image](https://github.com/DanyLoyal/SP-2-Java-Deep-Dive-project/assets/113057317/093b15d2-3a7a-4b0e-8af1-e144d3bb455f)
+![DomainModel.png](Documentation%2FDomainModel.png)
 
 
 EER diagram:

@@ -18,7 +18,7 @@ class WebscrapingTest {
     void findBestStocks() {
         Webscraping webscraping = Webscraping.getInstance();
 
-        List<Stock> list = webscraping.findBestStocks();
+        List<Stock> list = webscraping.findStocks(2, Webscraping.StockType.BEST);
 
         assertNotNull(list.get(0).getName());
         assertNotNull(list.get(1).getName());
@@ -33,7 +33,7 @@ class WebscrapingTest {
     @Test
     void findWorstStocks() {
         Webscraping webscraping = Webscraping.getInstance();
-        List<Stock> list = webscraping.findWorstStocks();
+        List<Stock> list = webscraping.findStocks(2, Webscraping.StockType.WORST);
 
         assertNotNull(list.get(0).getName());
         assertNotNull(list.get(1).getName());

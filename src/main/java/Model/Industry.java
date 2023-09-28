@@ -23,7 +23,7 @@ public class Industry {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "industry", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "industry", fetch = FetchType.EAGER)
     private Set<Stock> stocks = new HashSet<>();
 
     public Industry(String name){

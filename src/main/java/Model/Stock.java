@@ -31,7 +31,7 @@ public class Stock {
     @OneToMany(mappedBy = "stock", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<StockPrice> stockPrices = new ArrayList<>();
 
-    @OneToMany(mappedBy = "stock", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "stock", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<StockRisk> stockRisks = new ArrayList<>();
 
     @ManyToOne

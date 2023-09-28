@@ -4,6 +4,7 @@ import DAO.StockPriceDAO;
 import DAO.StockRiskDAO;
 import DBConfig.HibernateConfig;
 import Exceptions.ApiException;
+import Model.Industry;
 import Model.Stock;
 import Util.StockAPIEnricher;
 import Util.Webscraping;
@@ -66,10 +67,13 @@ public class Main {
                     StockPriceDAO.getInstance(emf).persist(s.getStockPrices().get(0));
                     StockRiskDAO.getInstance(emf).persist(s.getStockRisks().get(0));
                 } else {
+                    Industry industry = IndustryDAO.getInstance(emf).findByName(s.getIndustry().getName(), Industry.class, "Industry");
+                    s.setIndustry(industry);
                     StockDAO.getInstance(emf).persist(s);
                 }
             } else {
                 IndustryDAO.getInstance(emf).persist(s.getIndustry());
+                StockDAO.getInstance(emf).persist(s);
             }
         }
     }

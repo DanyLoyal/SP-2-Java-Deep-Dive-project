@@ -23,7 +23,7 @@ public class StockRiskDAO extends DAO<StockRisk> {
     }
 
     @Override
-    public StockRisk findByName(String name, Class<StockRisk> tClass) {
+    public StockRisk findByName(String name, Class<StockRisk> tClass, String table) {
         return null;
     }
 }

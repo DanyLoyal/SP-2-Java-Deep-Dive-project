@@ -17,4 +17,9 @@ public class StockPriceDAO extends DAO<StockPrice> {
         }
         return instance;
     }
+
+    @Override
+    public StockPrice findByName(String name, Class<StockPrice> tClass) {
+        return null;
+    }
 }

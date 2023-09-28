@@ -1,11 +1,8 @@
 package DAO;
 
 import DBConfig.HibernateConfig;
-import Model.Stock;
-import Model.StockRisk;
 import jakarta.persistence.EntityManagerFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DAO<T> implements GenericDAO<T> {

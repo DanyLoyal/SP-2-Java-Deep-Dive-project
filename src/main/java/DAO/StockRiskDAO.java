@@ -1,6 +1,7 @@
 package DAO;
 
 import DBConfig.HibernateConfig;
+import Model.StockPrice;
 import Model.StockRisk;
 import jakarta.persistence.EntityManagerFactory;
 
@@ -19,5 +20,10 @@ public class StockRiskDAO extends DAO<StockRisk> {
             instance = new StockRiskDAO();
         }
         return instance;
+    }
+
+    @Override
+    public StockRisk findByName(String name, Class<StockRisk> tClass) {
+        return null;
     }
 }
